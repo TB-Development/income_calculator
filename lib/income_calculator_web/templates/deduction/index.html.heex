@@ -1,0 +1,24 @@
+<h1>Listing Deductions</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for deduction <- @deductions do %>
+    <tr>
+
+      <td>
+        <span><%= link "Show", to: Routes.deduction_path(@conn, :show, deduction) %></span>
+        <span><%= link "Edit", to: Routes.deduction_path(@conn, :edit, deduction) %></span>
+        <span><%= link "Delete", to: Routes.deduction_path(@conn, :delete, deduction), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Deduction", to: Routes.deduction_path(@conn, :new) %></span>

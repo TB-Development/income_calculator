@@ -1,0 +1,5 @@
+<h1>Edit Paycheck</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.paycheck_path(@conn, :update, @paycheck)) %>
+
+<span><%= link "Back", to: Routes.paycheck_path(@conn, :index) %></span>

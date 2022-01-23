@@ -1,0 +1,24 @@
+<h1>Listing Paychecks</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for paycheck <- @paychecks do %>
+    <tr>
+
+      <td>
+        <span><%= link "Show", to: Routes.paycheck_path(@conn, :show, paycheck) %></span>
+        <span><%= link "Edit", to: Routes.paycheck_path(@conn, :edit, paycheck) %></span>
+        <span><%= link "Delete", to: Routes.paycheck_path(@conn, :delete, paycheck), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Paycheck", to: Routes.paycheck_path(@conn, :new) %></span>

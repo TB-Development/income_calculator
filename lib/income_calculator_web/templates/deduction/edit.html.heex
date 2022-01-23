@@ -1,0 +1,5 @@
+<h1>Edit Deduction</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.deduction_path(@conn, :update, @deduction)) %>
+
+<span><%= link "Back", to: Routes.deduction_path(@conn, :index) %></span>
