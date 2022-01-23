@@ -14,7 +14,7 @@ defmodule IncomeCalculator.Paychecks.Paycheck do
   @doc false
   def changeset(paycheck, attrs) do
     paycheck
-    |> cast(attrs, [:hours, :rate, :overtime_modifier, :regular_hour_limit])
-    |> validate_required([:hours, :rate, :overtime_modifier, :regular_hour_limit])
+    |> cast(attrs, [:hours, :rate])
+    |> validate_required([:hours, :rate])
   end
 end

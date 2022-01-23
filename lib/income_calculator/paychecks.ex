@@ -102,4 +102,34 @@ defmodule IncomeCalculator.Paychecks do
     Paycheck.changeset(paycheck, attrs)
   end
 
+  @doc """
+  Returns gross income for a paycheck.
+
+  ## Examples
+    {:ok, paycheck} = IncomeCalculator.Paychecks.create_paycheck(%{hours: 40, rate: 21.00})
+    {:ok, deduction} = IncomeCalculator.Deductions.create_deduction(%{amount: 105.11, paycheck_id: paycheck.id})
+    IncomeCalculator.Paychecks.gross_income(paycheck)
+  """
+  def gross_income(paycheck) do
+    paycheck.hours * paycheck.rate
+  end
+
+  @doc """
+  Returns gross income - deductions for a paycheck.
+
+  ## Examples
+    {:ok, paycheck} = IncomeCalculator.Paychecks.create_paycheck(%{hours: 40, rate: 21.00})
+    {:ok, deduction} = IncomeCalculator.Deductions.create_deduction(%{amount: 105.11, paycheck_id: paycheck.id})
+    IncomeCalculator.Paychecks.net_income(paycheck)
+  """
+  def net_income(paycheck) do
+    (gross_income(paycheck)) - (paycheck |> Repo.preload(:deductions) |> deduction_total())
+  end
+
+  def deduction_total(paycheck) do
+    paycheck.deductions
+    |> Enum.map(&(&1.amount))
+    |> Enum.sum()
+  end
+
 end

@@ -100,4 +100,5 @@ defmodule IncomeCalculator.Deductions do
   def change_deduction(%Deduction{} = deduction, attrs \\ %{}) do
     Deduction.changeset(deduction, attrs)
   end
+
 end

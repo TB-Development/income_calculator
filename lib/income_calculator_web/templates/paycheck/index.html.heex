@@ -1,23 +1,27 @@
-<h1>Listing Paychecks</h1>
+<h1>Paychecks</h1>
 
 <table>
   <thead>
     <tr>
-
-      <th></th>
+      <%= for header <- headers() do %>
+        <th><%= header %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-<%= for paycheck <- @paychecks do %>
+    <%= for paycheck <- @paychecks do %>
     <tr>
-
+      <td><%= paycheck.hours %></td>
+      <td><%= paycheck.rate %></td>
+      <td><%= gross_income(paycheck) %></td>
+      <td><%= net_income(paycheck) %></td>
       <td>
         <span><%= link "Show", to: Routes.paycheck_path(@conn, :show, paycheck) %></span>
         <span><%= link "Edit", to: Routes.paycheck_path(@conn, :edit, paycheck) %></span>
         <span><%= link "Delete", to: Routes.paycheck_path(@conn, :delete, paycheck), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
-<% end %>
+    <% end %>
   </tbody>
 </table>
 

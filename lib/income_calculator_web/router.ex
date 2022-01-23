@@ -18,9 +18,11 @@ defmodule IncomeCalculatorWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/paychecks", PaycheckController
-    resources "/deductions", DeductionController
 
+    scope "/paychecks" do
+      resources "/", PaycheckController
+    end
+    resources "/deductions", DeductionController
   end
 
   # Other scopes may use custom stacks.
